@@ -1,0 +1,44 @@
+[
+{
+  "directory": "/Users/harshsharma/Downloads/SearchEngine/build",
+  "command": "/usr/bin/clang++  -I/Users/harshsharma/Downloads/SearchEngine/include -g -std=gnu++17 -arch arm64 -o CMakeFiles/SearchEngine.dir/src/core/Tokenizer.cpp.o -c /Users/harshsharma/Downloads/SearchEngine/src/core/Tokenizer.cpp",
+  "file": "/Users/harshsharma/Downloads/SearchEngine/src/core/Tokenizer.cpp",
+  "output": "CMakeFiles/SearchEngine.dir/src/core/Tokenizer.cpp.o"
+},
+{
+  "directory": "/Users/harshsharma/Downloads/SearchEngine/build",
+  "command": "/usr/bin/clang++  -I/Users/harshsharma/Downloads/SearchEngine/include -g -std=gnu++17 -arch arm64 -o CMakeFiles/SearchEngine.dir/src/core/StopWordRemover.cpp.o -c /Users/harshsharma/Downloads/SearchEngine/src/core/StopWordRemover.cpp",
+  "file": "/Users/harshsharma/Downloads/SearchEngine/src/core/StopWordRemover.cpp",
+  "output": "CMakeFiles/SearchEngine.dir/src/core/StopWordRemover.cpp.o"
+},
+{
+  "directory": "/Users/harshsharma/Downloads/SearchEngine/build",
+  "command": "/usr/bin/clang++  -I/Users/harshsharma/Downloads/SearchEngine/include -g -std=gnu++17 -arch arm64 -o CMakeFiles/SearchEngine.dir/src/core/DocumentIndexer.cpp.o -c /Users/harshsharma/Downloads/SearchEngine/src/core/DocumentIndexer.cpp",
+  "file": "/Users/harshsharma/Downloads/SearchEngine/src/core/DocumentIndexer.cpp",
+  "output": "CMakeFiles/SearchEngine.dir/src/core/DocumentIndexer.cpp.o"
+},
+{
+  "directory": "/Users/harshsharma/Downloads/SearchEngine/build",
+  "command": "/usr/bin/clang++  -I/Users/harshsharma/Downloads/SearchEngine/include -g -std=gnu++17 -arch arm64 -o CMakeFiles/SearchEngine.dir/src/core/TFIDFCalculator.cpp.o -c /Users/harshsharma/Downloads/SearchEngine/src/core/TFIDFCalculator.cpp",
+  "file": "/Users/harshsharma/Downloads/SearchEngine/src/core/TFIDFCalculator.cpp",
+  "output": "CMakeFiles/SearchEngine.dir/src/core/TFIDFCalculator.cpp.o"
+},
+{
+  "directory": "/Users/harshsharma/Downloads/SearchEngine/build",
+  "command": "/usr/bin/clang++  -I/Users/harshsharma/Downloads/SearchEngine/include -g -std=gnu++17 -arch arm64 -o CMakeFiles/SearchEngine.dir/src/core/SearchEngine.cpp.o -c /Users/harshsharma/Downloads/SearchEngine/src/core/SearchEngine.cpp",
+  "file": "/Users/harshsharma/Downloads/SearchEngine/src/core/SearchEngine.cpp",
+  "output": "CMakeFiles/SearchEngine.dir/src/core/SearchEngine.cpp.o"
+},
+{
+  "directory": "/Users/harshsharma/Downloads/SearchEngine/build",
+  "command": "/usr/bin/clang++  -I/Users/harshsharma/Downloads/SearchEngine/include -g -std=gnu++17 -arch arm64 -o CMakeFiles/SearchEngine.dir/src/server/main.cpp.o -c /Users/harshsharma/Downloads/SearchEngine/src/server/main.cpp",
+  "file": "/Users/harshsharma/Downloads/SearchEngine/src/server/main.cpp",
+  "output": "CMakeFiles/SearchEngine.dir/src/server/main.cpp.o"
+},
+{
+  "directory": "/Users/harshsharma/Downloads/SearchEngine/build",
+  "command": "/usr/bin/clang++  -I/Users/harshsharma/Downloads/SearchEngine/include -g -std=gnu++17 -arch arm64 -o CMakeFiles/SearchEngine.dir/src/server/Server.cpp.o -c /Users/harshsharma/Downloads/SearchEngine/src/server/Server.cpp",
+  "file": "/Users/harshsharma/Downloads/SearchEngine/src/server/Server.cpp",
+  "output": "CMakeFiles/SearchEngine.dir/src/server/Server.cpp.o"
+}
+]

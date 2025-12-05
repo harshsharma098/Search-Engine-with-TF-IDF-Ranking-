@@ -1,0 +1,99 @@
+Database Systems and SQL
+
+Database systems play a crucial role in storing, organizing, and managing data efficiently in modern applications. Whether it’s a small app or a large-scale enterprise platform, databases ensure that information is stored securely and can be retrieved quickly when needed.
+
+Relational Database Management Systems (RDBMS) are one of the most widely used database models. They store structured data using tables that consist of rows and columns. This structure makes it easy to maintain relationships between data entities and ensure accuracy.
+
+SQL (Structured Query Language)
+
+SQL is the standard language used to interact with relational databases. It is used for:
+
+Querying data
+
+Inserting new records
+
+Updating existing records
+
+Deleting records
+
+Managing database structure
+
+Examples of SQL-based systems include MySQL, PostgreSQL, Microsoft SQL Server, and Oracle Database.
+
+SQL commands are typically categorized into:
+
+DDL (Data Definition Language): CREATE, DROP, ALTER
+
+DML (Data Manipulation Language): INSERT, UPDATE, DELETE
+
+DQL (Data Query Language): SELECT
+
+DCL (Data Control Language): GRANT, REVOKE
+
+TCL (Transaction Control Language): COMMIT, ROLLBACK
+
+NoSQL Databases
+
+NoSQL databases offer greater flexibility for handling unstructured or semi-structured data. They are highly scalable and ideal for distributed systems, real-time analytics, and large-scale web applications.
+
+Different types of NoSQL databases include:
+
+Document Databases (e.g., MongoDB, CouchDB)
+
+Key-Value Stores (e.g., Redis, DynamoDB)
+
+Column-Family Databases (e.g., Cassandra, HBase)
+
+Graph Databases (e.g., Neo4j)
+
+NoSQL systems excel in scenarios where data structure may change frequently or when massive volumes of data must be processed efficiently.
+
+Indexing
+
+Indexing plays a key role in improving database query performance. Instead of scanning entire tables, indexes provide faster access paths to data.
+
+Common index types include:
+
+B-Tree Index
+
+Hash Index
+
+Bitmap Index
+
+Full-text Index
+
+Indexes speed up read operations but may slow down write operations since they must be updated whenever data changes.
+
+Transactions and ACID Properties
+
+Transactions ensure that multiple database operations execute safely and reliably. They follow ACID properties, which are essential for maintaining data integrity:
+
+A: Atomicity – All operations complete successfully or none at all.
+
+C: Consistency – The database remains valid before and after the transaction.
+
+I: Isolation – Simultaneous transactions do not interfere with each other.
+
+D: Durability – Once committed, data remains safe even after failures.
+
+These guarantees are essential in banking, e-commerce, and critical data environments.
+
+Database Normalization
+
+Database normalization is the process of organizing database tables to reduce redundancy. Normalization helps prevent data anomalies such as update, delete, or insert inconsistencies.
+
+Common normal forms include:
+
+1NF (First Normal Form) – Eliminates repeating groups and ensures each column holds atomic values.
+
+2NF (Second Normal Form) – Removes partial dependencies.
+
+3NF (Third Normal Form) – Eliminates transitive dependencies.
+
+Proper normalization results in efficient storage and consistent data relationships.
+
+Conclusion
+
+Database systems are foundational to modern software applications. Relational and NoSQL databases each serve unique needs depending on the type and scale of data. SQL provides a standardized way to interact with relational databases, while indexing and proper schema design improve efficiency.
+
+By understanding transactions, normalization, and ACID properties, developers can build robust and reliable systems capable of handling real-world data challenges.

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Engine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="batman-background">
+        <div class="batman-logo-background">
+            <div class="the-batman-logo">
+                <div class="logo-the">THE</div>
+                <div class="logo-batman">
+                    <span class="bat">B</span>
+                    <span class="bat">A</span>
+                    <span class="bat">T</span>
+                    <span class="bat">M</span>
+                    <span class="bat">A</span>
+                    <span class="bat">N</span>
+                </div>
+            </div>
+        </div>
+        <div class="red-glow"></div>
+        <div class="atmospheric-mist"></div>
+        <div class="clouds-container">
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+            <div class="cloud cloud-3"></div>
+            <div class="cloud cloud-4"></div>
+            <div class="cloud cloud-5"></div>
+        </div>
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+        </div>
+    </div>
+    <div class="container">
+        <header>
+            <div class="header-links">
+                <a href="#" id="about-link"><i class="fas fa-info-circle"></i> About</a>
+                <a href="#" id="help-link"><i class="fas fa-question-circle"></i> Help</a>
+            </div>
+        </header>
+        
+        <main>
+            <div class="logo-container">
+                <h1 class="logo">SEARCH ENGINE</h1>
+                <div class="subtitle">GOTHAM CITY DATABASE</div>
+            </div>
+            
+            <div class="search-container">
+                <div class="search-box-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="search-input" class="search-input" placeholder="Enter search query..." autofocus>
+                    <button id="clear-btn" class="clear-btn" style="display: none;"><i class="fas fa-times"></i></button>
+                </div>
+                
+                <div id="suggestions-container" class="suggestions-container" style="display: none;">
+                    <div id="suggestions-list" class="suggestions-list"></div>
+                </div>
+                
+                <div class="search-buttons">
+                    <button id="search-btn" class="search-button">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+            </div>
+            
+            <div id="status" class="status"></div>
+        </main>
+        
+        <div id="results-container" class="results-container" style="display: none;">
+            <div class="results-header">
+                <div id="results-count" class="results-count"></div>
+                <button id="back-to-search" class="back-to-search">← Back to Search</button>
+            </div>
+            <div id="results-list" class="results-list"></div>
+        </div>
+        
+        <footer>
+            <div class="footer-links">
+                <a href="#"><i class="fas fa-shield-alt"></i> Privacy</a>
+                <a href="#" id="terms-link"><i class="fas fa-file-contract"></i> Terms</a>
+                <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            </div>
+            <div class="footer-credits">GOTHAM CITY • THE BATMAN</div>
+        </footer>
+    </div>
+    
+    <!-- About Modal -->
+    <div id="about-modal" class="about-modal" style="display: none;">
+        <div class="about-modal-overlay"></div>
+        <div class="about-modal-content">
+            <button class="about-modal-close" id="about-modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="about-header">
+                <div class="about-logo-animated">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h2>About Search Engine</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-section">
+                    <h3><i class="fas fa-info-circle"></i> Overview</h3>
+                    <p>
+                        This is an advanced search engine built with cutting-edge information retrieval technology. 
+                        It uses TF-IDF (Term Frequency-Inverse Document Frequency) algorithm to provide highly 
+                        relevant search results from indexed documents. The engine is designed to deliver fast, 
+                        accurate, and intelligent search capabilities.
+                    </p>
+                </div>
+                
+                <div class="about-section">
+                    <h3><i class="fas fa-star"></i> Key Features</h3>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <i class="fas fa-bolt"></i>
+                            <h4>Fast Search</h4>
+                            <p>Lightning-fast search results with optimized indexing</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-brain"></i>
+                            <h4>AI Suggestions</h4>
+                            <p>Intelligent auto-complete and search suggestions</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-chart-line"></i>
+                            <h4>TF-IDF Ranking</h4>
+                            <p>Advanced relevance scoring for accurate results</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-filter"></i>
+                            <h4>Smart Filtering</h4>
+                            <p>Automatic stop word removal and tokenization</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-file-alt"></i>
+                            <h4>Document Indexing</h4>
+                            <p>Efficient indexing of multiple document formats</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Responsive Design</h4>
+                            <p>Beautiful UI that works on all devices</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-section founder-section">
+                    <h3><i class="fas fa-user-graduate"></i> Founder</h3>
+                    <div class="founder-info">
+                        <div class="founder-image-container">
+                            <div class="founder-image-wrapper">
+                                <img src="./P_Photo.png" alt="HARSH SHARMA" class="founder-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            </div>
+                        </div>
+                        <div class="founder-details">
+                            <h4>HARSH SHARMA</h4>
+                            <p class="founder-title">4th Year BTech Student</p>
+                            <p class="founder-university">
+                                <i class="fas fa-university"></i> Sharda University
+                            </p>
+                            <p class="founder-description">
+                                Passionate about information retrieval systems, machine learning, 
+                                and building innovative solutions. This search engine represents 
+                                a culmination of knowledge in data structures, algorithms, and 
+                                web technologies.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Help Modal -->
+    <div id="help-modal" class="help-modal" style="display: none;">
+        <div class="help-modal-overlay"></div>
+        <div class="help-modal-content">
+            <button class="help-modal-close" id="help-modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="help-header">
+                <div class="help-logo-animated">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <h2>Search Help & Tips</h2>
+            </div>
+            <div class="help-content">
+                <div class="help-section">
+                    <h3><i class="fas fa-lightbulb"></i> How to Search</h3>
+                    <p>
+                        Simply type your search query in the search box and press Enter or click the Search button. 
+                        Our search engine uses advanced TF-IDF algorithms to find the most relevant documents 
+                        matching your query.
+                    </p>
+                </div>
+                
+                <div class="help-section">
+                    <h3><i class="fas fa-magic"></i> Auto-Suggestions</h3>
+                    <p>
+                        As you type, our AI-powered auto-suggestion feature provides real-time search suggestions 
+                        based on indexed content. This helps you find what you're looking for faster.
+                    </p>
+                    <ul class="help-list">
+                        <li>Suggestions appear automatically as you type</li>
+                        <li>Use arrow keys to navigate through suggestions</li>
+                        <li>Press Enter to select a suggestion</li>
+                        <li>Click on any suggestion to use it</li>
+                    </ul>
+                </div>
+                
+                <div class="help-section">
+                    <h3><i class="fas fa-keyboard"></i> Keyboard Shortcuts</h3>
+                    <div class="shortcuts-grid">
+                        <div class="shortcut-item">
+                            <kbd>Enter</kbd>
+                            <span>Perform search</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <kbd>↑</kbd>
+                            <span>Navigate suggestions up</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <kbd>↓</kbd>
+                            <span>Navigate suggestions down</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <kbd>Esc</kbd>
+                            <span>Close suggestions or modals</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <kbd>Ctrl/Cmd + K</kbd>
+                            <span>Focus search box</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="help-section">
+                    <h3><i class="fas fa-search"></i> Search Tips</h3>
+                    <div class="tips-grid">
+                        <div class="tip-item">
+                            <i class="fas fa-check-circle"></i>
+                            <h4>Use Specific Terms</h4>
+                            <p>More specific search terms yield better results. Be precise with your keywords.</p>
+                        </div>
+                        <div class="tip-item">
+                            <i class="fas fa-check-circle"></i>
+                            <h4>Natural Language</h4>
+                            <p>You can search using natural language queries. The engine will extract relevant keywords.</p>
+                        </div>
+                        <div class="tip-item">
+                            <i class="fas fa-check-circle"></i>
+                            <h4>Review Results</h4>
+                            <p>Results are ranked by relevance. Check the TF-IDF score to see how closely documents match.</p>
+                        </div>
+                        <div class="tip-item">
+                            <i class="fas fa-check-circle"></i>
+                            <h4>Multiple Keywords</h4>
+                            <p>Use multiple keywords to narrow down your search and find more relevant documents.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="help-section">
+                    <h3><i class="fas fa-info-circle"></i> Understanding Results</h3>
+                    <div class="results-info">
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fas fa-file-alt"></i></div>
+                            <div class="info-content">
+                                <h4>Document Title</h4>
+                                <p>The name of the indexed document. Click to view full content.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fas fa-link"></i></div>
+                            <div class="info-content">
+                                <h4>File Path</h4>
+                                <p>Shows the location of the document in the system.</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class="fas fa-star"></i></div>
+                            <div class="info-content">
+                                <h4>Relevance Score</h4>
+                                <p>TF-IDF score indicating how relevant the document is to your query. Higher scores mean better matches.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="help-section">
+                    <h3><i class="fas fa-question"></i> Frequently Asked Questions</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-chevron-right"></i>
+                                <span>How does the search engine work?</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Our search engine uses TF-IDF (Term Frequency-Inverse Document Frequency) algorithm to rank documents. It analyzes the frequency of search terms in documents and compares them across the entire index to determine relevance.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-chevron-right"></i>
+                                <span>Why are some words ignored in my search?</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Common stop words (like "the", "a", "an", "and", etc.) are automatically filtered out to improve search accuracy and speed. This is standard practice in information retrieval systems.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-chevron-right"></i>
+                                <span>Can I search for exact phrases?</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Yes! The search engine processes your query and matches individual terms. For best results with phrases, include all key terms from your phrase in the search.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-chevron-right"></i>
+                                <span>How are documents indexed?</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Documents are automatically indexed when placed in the data folder. The system tokenizes the content, removes stop words, and builds a searchable index for fast retrieval.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Terms Modal -->
+    <div id="terms-modal" class="terms-modal" style="display: none;">
+        <div class="terms-modal-overlay"></div>
+        <div class="terms-modal-content">
+            <button class="terms-modal-close" id="terms-modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="terms-header">
+                <div class="terms-logo-animated">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <h2>Terms of Service</h2>
+            </div>
+            <div class="terms-content">
+                <div class="terms-section">
+                    <h3><i class="fas fa-gavel"></i> Acceptance of Terms</h3>
+                    <p>
+                        By accessing and using this Search Engine service, you accept and agree to be bound by the terms 
+                        and provision of this agreement. If you do not agree to abide by the above, please do not use 
+                        this service.
+                    </p>
+                </div>
+                
+                <div class="terms-section">
+                    <h3><i class="fas fa-user-shield"></i> Use License</h3>
+                    <p>
+                        Permission is granted to temporarily use this Search Engine for personal, non-commercial 
+                        transitory viewing only. This is the grant of a license, not a transfer of title, and under 
+                        this license you may not:
+                    </p>
+                    <ul class="terms-list">
+                        <li>Modify or copy the materials</li>
+                        <li>Use the materials for any commercial purpose or for any public display</li>
+                        <li>Attempt to reverse engineer any software contained in the service</li>
+                        <li>Remove any copyright or other proprietary notations from the materials</li>
+                        <li>Transfer the materials to another person or "mirror" the materials on any other server</li>
+                    </ul>
+                </div>
+                
+                <div class="terms-section">
+                    <h3><i class="fas fa-shield-alt"></i> Disclaimer</h3>
+                    <p>
+                        The materials on this Search Engine are provided on an 'as is' basis. The service makes no 
+                        warranties, expressed or implied, and hereby disclaims and negates all other warranties including, 
+                        without limitation, implied warranties or conditions of merchantability, fitness for a particular 
+                        purpose, or non-infringement of intellectual property or other violation of rights.
+                    </p>
+                    <p>
+                        Further, the service does not warrant or make any representations concerning the accuracy, 
+                        likely results, or reliability of the use of the materials on its website or otherwise relating 
+                        to such materials or on any sites linked to this service.
+                    </p>
+                </div>
+                
+                <div class="terms-section">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Limitations</h3>
+                    <p>
+                        In no event shall the Search Engine or its suppliers be liable for any damages (including, without 
+                        limitation, damages for loss of data or profit, or due to business interruption) arising out of the 
+                        use or inability to use the materials on this service, even if the service or an authorized 
+                        representative has been notified orally or in writing of the possibility of such damage.
+                    </p>
+                </div>
+                
+                <div class="terms-section">
+                    <h3><i class="fas fa-file-alt"></i> Accuracy of Materials</h3>
+                    <p>
+                        The materials appearing on this Search Engine could include technical, typographical, or 
+                        photographic errors. The service does not warrant that any of the materials on its website are 
+                        accurate, complete, or current. The service may make changes to the materials contained on its 
+                        website at any time without notice.
+                    </p>
+                </div>
+                
+                <div class="terms-section">
+                    <h3><i class="fas fa-link"></i> Links</h3>
+                    <p>
+                        The service has not reviewed all of the sites linked to its website and is not responsible for 
+                        the contents of any such linked site. The inclusion of any link does not imply endorsement by 
+                        the service of the site. Use of any such linked website is at the user's own risk.
+                    </p>
+                </div>
+                
+                <div class="terms-section">
+                    <h3><i class="fas fa-edit"></i> Modifications</h3>
+                    <p>
+                        The service may revise these terms of service for its website at any time without notice. By 
+                        using this website you are agreeing to be bound by the then current version of these terms of service.
+                    </p>
+                </div>
+                
+                <div class="terms-section">
+                    <h3><i class="fas fa-balance-scale"></i> Governing Law</h3>
+                    <p>
+                        These terms and conditions are governed by and construed in accordance with the laws and you 
+                        irrevocably submit to the exclusive jurisdiction of the courts in that location.
+                    </p>
+                </div>
+                
+                <div class="terms-section">
+                    <h3><i class="fas fa-lock"></i> Privacy and Data</h3>
+                    <p>
+                        Your use of this Search Engine service is subject to our Privacy Policy. We do not collect, 
+                        store, or share personal information through search queries. All searches are processed locally 
+                        and no user data is transmitted to external servers.
+                    </p>
+                </div>
+                
+                <div class="terms-section">
+                    <h3><i class="fas fa-ban"></i> Prohibited Uses</h3>
+                    <p>You may not use this service:</p>
+                    <ul class="terms-list">
+                        <li>In any way that violates any applicable national or international law or regulation</li>
+                        <li>To transmit, or procure the sending of, any advertising or promotional material</li>
+                        <li>To impersonate or attempt to impersonate the service, a service employee, another user, or any other person or entity</li>
+                        <li>In any way that infringes upon the rights of others, or in any way is illegal, threatening, fraudulent, or harmful</li>
+                        <li>To engage in any other conduct that restricts or inhibits anyone's use or enjoyment of the service</li>
+                    </ul>
+                </div>
+                
+                <div class="terms-section">
+                    <h3><i class="fas fa-handshake"></i> Agreement to Terms</h3>
+                    <p>
+                        By using this Search Engine, you signify your acceptance of these terms. If you do not agree 
+                        to these terms, please do not use our service. Your continued use of the service following 
+                        the posting of changes to these terms will be deemed your acceptance of those changes.
+                    </p>
+                    <p class="terms-date">
+                        <strong>Last Updated:</strong> <span id="terms-date"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+
