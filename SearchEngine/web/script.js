@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.getElementById('search-btn');
     const clearBtn = document.getElementById('clear-btn');
+
+    applySavedTheme();
     
     // Check server status
     checkStatus();
@@ -125,6 +127,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (termsModal.style.display !== 'none') {
                 hideTermsModal();
             }
+            if (privacyModal.style.display !== 'none') {
+                hidePrivacyModal();
+            }
+            if (settingsModal.style.display !== 'none') {
+                hideSettingsModal();
+            }
         }
         
         // Focus search box with Ctrl/Cmd + K
@@ -152,6 +160,53 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === termsModal || e.target.classList.contains('terms-modal-overlay')) {
             hideTermsModal();
         }
+    });
+
+    // Privacy button
+    const privacyLink = document.getElementById('privacy-link');
+    const privacyModal = document.getElementById('privacy-modal');
+    const privacyModalClose = document.getElementById('privacy-modal-close');
+
+    privacyLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        showPrivacyModal();
+    });
+
+    privacyModalClose.addEventListener('click', () => {
+        hidePrivacyModal();
+    });
+
+    privacyModal.addEventListener('click', (e) => {
+        if (e.target === privacyModal || e.target.classList.contains('privacy-modal-overlay')) {
+            hidePrivacyModal();
+        }
+    });
+
+    // Settings button and theme controls
+    const settingsLink = document.getElementById('settings-link');
+    const settingsModal = document.getElementById('settings-modal');
+    const settingsModalClose = document.getElementById('settings-modal-close');
+    const themeOptions = document.querySelectorAll('.theme-option');
+
+    settingsLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        showSettingsModal();
+    });
+
+    settingsModalClose.addEventListener('click', () => {
+        hideSettingsModal();
+    });
+
+    settingsModal.addEventListener('click', (e) => {
+        if (e.target === settingsModal || e.target.classList.contains('settings-modal-overlay')) {
+            hideSettingsModal();
+        }
+    });
+
+    themeOptions.forEach((button) => {
+        button.addEventListener('click', () => {
+            setTheme(button.dataset.theme);
+        });
     });
     
     // Set current date for terms
@@ -664,5 +719,72 @@ function hideTermsModal() {
         termsModal.style.display = 'none';
         document.body.style.overflow = '';
     }, 300);
+}
+
+function showPrivacyModal() {
+    const privacyModal = document.getElementById('privacy-modal');
+    privacyModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+
+    setTimeout(() => {
+        privacyModal.classList.add('active');
+    }, 10);
+}
+
+function hidePrivacyModal() {
+    const privacyModal = document.getElementById('privacy-modal');
+    privacyModal.classList.remove('active');
+
+    setTimeout(() => {
+        privacyModal.style.display = 'none';
+        document.body.style.overflow = '';
+    }, 300);
+}
+
+function showSettingsModal() {
+    const settingsModal = document.getElementById('settings-modal');
+    settingsModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    updateThemeSelection();
+
+    setTimeout(() => {
+        settingsModal.classList.add('active');
+    }, 10);
+}
+
+function hideSettingsModal() {
+    const settingsModal = document.getElementById('settings-modal');
+    settingsModal.classList.remove('active');
+
+    setTimeout(() => {
+        settingsModal.style.display = 'none';
+        document.body.style.overflow = '';
+    }, 300);
+}
+
+function applySavedTheme() {
+    const savedTheme = localStorage.getItem('searchEngineTheme') || 'red';
+    setTheme(savedTheme, false);
+}
+
+function setTheme(theme, shouldSave = true) {
+    const allowedThemes = ['red', 'blue', 'purple', 'gold'];
+    const nextTheme = allowedThemes.includes(theme) ? theme : 'red';
+    document.body.dataset.theme = nextTheme;
+
+    if (shouldSave) {
+        localStorage.setItem('searchEngineTheme', nextTheme);
+    }
+
+    updateThemeSelection();
+}
+
+function updateThemeSelection() {
+    const currentTheme = document.body.dataset.theme || 'red';
+    document.querySelectorAll('.theme-option').forEach((button) => {
+        const isSelected = button.dataset.theme === currentTheme;
+        button.classList.toggle('active', isSelected);
+        button.setAttribute('aria-checked', isSelected ? 'true' : 'false');
+    });
 }
 
