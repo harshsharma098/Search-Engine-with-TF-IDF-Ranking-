@@ -2237,6 +2237,19 @@ footer {
     box-shadow: 0 0 25px rgba(220, 20, 60, 0.5);
 }
 
+.about-modal-close span,
+.help-modal-close span,
+.terms-modal-close span,
+.privacy-modal-close span,
+.settings-modal-close span {
+    display: block;
+    font-size: 30px;
+    line-height: 1;
+    font-family: Arial, sans-serif;
+    font-weight: 400;
+    transform: translateY(-1px);
+}
+
 .terms-header {
     text-align: center;
     padding: 40px 40px 30px;
