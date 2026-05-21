@@ -2982,6 +2982,20 @@ body[data-theme="gold"] .settings-modal-content {
     animation: termsRotate 4s linear infinite;
 }
 
+.modal-symbol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: rgba(220, 20, 60, 0.95);
+    font-family: 'Rajdhani', Arial, sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1;
+    text-shadow: 0 0 18px rgba(220, 20, 60, 0.55);
+}
+
 .privacy-header h2,
 .settings-header h2 {
     font-size: 32px;
