@@ -1,0 +1,8 @@
+.git
+.gitignore
+
+SearchEngine/build/
+**/CMakeCache.txt
+**/CMakeFiles/
+**/cmake_install.cmake
+**/Makefile

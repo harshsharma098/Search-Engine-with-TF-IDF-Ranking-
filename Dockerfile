@@ -7,7 +7,8 @@ RUN apt-get update \
 WORKDIR /app/SearchEngine
 COPY SearchEngine/ ./
 
-RUN cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
+RUN rm -rf build \
+    && cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
     && cmake --build build --config Release
 
 FROM ubuntu:24.04
