@@ -1,6 +1,7 @@
 #include "server/Server.h"
 #include <iostream>
 #include <csignal>
+#include <cstdlib>
 
 Server* g_server = nullptr;
 
@@ -14,6 +15,14 @@ void signalHandler(int signal) {
 
 int main(int argc, char *argv[]) {
     int port = 8080;
+
+    if (const char* envPort = std::getenv("PORT")) {
+        try {
+            port = std::stoi(envPort);
+        } catch (...) {
+            std::cerr << "Invalid PORT environment variable. Using default port 8080." << std::endl;
+        }
+    }
     
     // Parse command line arguments
     if (argc > 1) {
