@@ -131,7 +131,11 @@ bool Server::start() {
             std::string response;
             
             // Handle routes
-            if (path == "/" || path == "/index.html") {
+            if (path == "/healthz") {
+                std::string json = "{\"status\":\"ok\"}";
+                response = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: " +
+                          std::to_string(json.length()) + "\r\n\r\n" + json;
+            } else if (path == "/" || path == "/index.html") {
                 response = serveStaticFile("web/index.html");
                 if (response.empty()) {
                     response = "HTTP/1.1 404 Not Found\r\n\r\n";
