@@ -32,26 +32,28 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%;
-    max-width: 100%;
+    width: min(1500px, 96vw);
+    max-width: 96vw;
     z-index: 1;
     opacity: 0.65;
-    padding: 0 5%;
+    padding: 0 clamp(10px, 4vw, 70px);
+    overflow: hidden;
 }
 
 .the-batman-logo {
     text-align: center;
     font-family: 'Rajdhani', 'Impact', 'Arial Black', sans-serif;
     width: 100%;
+    transform-origin: center;
 }
 
 .logo-the {
-    font-size: 72px;
+    font-size: clamp(30px, 4.8vw, 72px);
     font-weight: 700;
     color: rgba(0, 0, 0, 0.8);
-    letter-spacing: 14px;
+    letter-spacing: clamp(4px, 0.9vw, 14px);
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: clamp(8px, 1.4vw, 20px);
     text-shadow: 
         3px 3px 6px rgba(0, 0, 0, 0.7),
         0 0 20px rgba(220, 20, 60, 0.2);
@@ -60,10 +62,10 @@ body {
 }
 
 .logo-batman {
-    font-size: 280px;
+    font-size: clamp(56px, 15vw, 280px);
     font-weight: 900;
     color: rgba(0, 0, 0, 0.8);
-    letter-spacing: 24px;
+    letter-spacing: clamp(2px, 1.25vw, 24px);
     text-transform: uppercase;
     line-height: 1;
     text-shadow: 
@@ -72,14 +74,19 @@ body {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 15px;
+    justify-content: space-between;
+    gap: clamp(1px, 0.8vw, 15px);
     width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
 }
 
 .bat {
     position: relative;
     display: inline-block;
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
     color: rgba(0, 0, 0, 0.8);
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 15px rgba(220, 20, 60, 0.2));
 }
@@ -2453,15 +2460,20 @@ footer {
 
 /* Device-wide responsive refinements */
 @media (max-width: 1200px) {
+    .batman-logo-background {
+        width: min(1120px, 96vw);
+        padding: 0 clamp(8px, 3vw, 44px);
+    }
+
     .logo-the {
-        font-size: clamp(42px, 6vw, 72px);
-        letter-spacing: clamp(6px, 1.2vw, 14px);
+        font-size: clamp(30px, 5vw, 60px);
+        letter-spacing: clamp(4px, 1vw, 12px);
     }
 
     .logo-batman {
-        font-size: clamp(90px, 18vw, 280px);
-        letter-spacing: clamp(6px, 2vw, 24px);
-        gap: clamp(4px, 1vw, 15px);
+        font-size: clamp(58px, 15vw, 180px);
+        letter-spacing: clamp(2px, 1vw, 12px);
+        gap: clamp(1px, 0.6vw, 10px);
     }
 
     .logo {
@@ -2509,19 +2521,22 @@ footer {
 
     .batman-logo-background {
         opacity: 0.35;
-        padding: 0 2%;
+        top: 47%;
+        width: 98vw;
+        max-width: 98vw;
+        padding: 0 8px;
     }
 
     .logo-the {
-        font-size: 30px;
-        letter-spacing: 5px;
-        margin-bottom: 10px;
+        font-size: clamp(18px, 7vw, 30px);
+        letter-spacing: clamp(2px, 1vw, 5px);
+        margin-bottom: 8px;
     }
 
     .logo-batman {
-        font-size: clamp(48px, 17vw, 86px);
-        letter-spacing: clamp(2px, 1vw, 6px);
-        gap: 2px;
+        font-size: clamp(38px, 14vw, 76px);
+        letter-spacing: clamp(0px, 0.4vw, 2px);
+        gap: 1px;
     }
 
     .red-glow {
@@ -2777,6 +2792,24 @@ footer {
 }
 
 @media (max-width: 380px) {
+    .batman-logo-background {
+        top: 44%;
+        width: 100vw;
+        max-width: 100vw;
+        padding: 0 6px;
+    }
+
+    .logo-the {
+        font-size: 18px;
+        letter-spacing: 2px;
+    }
+
+    .logo-batman {
+        font-size: clamp(34px, 13vw, 48px);
+        letter-spacing: 0;
+        gap: 0;
+    }
+
     .header-links,
     .footer-links {
         flex-direction: column;
@@ -2803,6 +2836,21 @@ footer {
 }
 
 @media (max-height: 560px) and (orientation: landscape) {
+    .batman-logo-background {
+        top: 56%;
+        width: min(900px, 92vw);
+        opacity: 0.32;
+    }
+
+    .logo-the {
+        font-size: clamp(18px, 5vh, 30px);
+        margin-bottom: 4px;
+    }
+
+    .logo-batman {
+        font-size: clamp(42px, 16vh, 86px);
+    }
+
     header {
         padding: 10px 16px;
     }
