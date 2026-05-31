@@ -6,93 +6,71 @@
     <title>Search Engine</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css">
 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="batman-background">
-        <div class="batman-logo-background">
-            <div class="the-batman-logo">
-                <div class="logo-the">THE</div>
-                <div class="logo-batman">
-                    <span class="bat">B</span>
-                    <span class="bat">A</span>
-                    <span class="bat">T</span>
-                    <span class="bat">M</span>
-                    <span class="bat">A</span>
-                    <span class="bat">N</span>
-                </div>
-            </div>
-        </div>
-        <div class="red-glow"></div>
-        <div class="atmospheric-mist"></div>
-        <div class="clouds-container">
-            <div class="cloud cloud-1"></div>
-            <div class="cloud cloud-2"></div>
-            <div class="cloud cloud-3"></div>
-            <div class="cloud cloud-4"></div>
-            <div class="cloud cloud-5"></div>
-        </div>
-        <div class="floating-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-            <div class="shape shape-4"></div>
-        </div>
-    </div>
-    <div class="container">
-        <header>
-            <div class="header-links">
-                <a href="#" id="about-link"><i class="fas fa-info-circle"></i> About</a>
-                <a href="#" id="help-link"><i class="fas fa-question-circle"></i> Help</a>
-            </div>
-        </header>
-        
-        <main>
-            <div class="logo-container">
-                <h1 class="logo">SEARCH ENGINE</h1>
-                <div class="subtitle">GOTHAM CITY DATABASE</div>
-            </div>
-            
-            <div class="search-container">
-                <div class="search-box-wrapper">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" id="search-input" class="search-input" placeholder="Enter search query..." autofocus>
-                    <button id="clear-btn" class="clear-btn" style="display: none;"><i class="fas fa-times"></i></button>
-                </div>
-                
-                <div id="suggestions-container" class="suggestions-container" style="display: none;">
-                    <div id="suggestions-list" class="suggestions-list"></div>
-                </div>
-                
-                <div class="search-buttons">
-                    <button id="search-btn" class="search-button">
-                        <i class="fas fa-search"></i> Search
+    <div class="hero" id="hero">
+        <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
+
+        <nav class="navbar">
+            <a class="nav-logo" href="#" aria-label="Search Engine home">THE DARK <span>KNIGHT</span></a>
+            <ul class="nav-links">
+                <li><a href="#" id="about-link">About</a></li>
+                <li><a href="#" id="help-link">Help</a></li>
+                <li><a href="#" id="privacy-link">Policy</a></li>
+                <li><a href="#" id="terms-link">Terms</a></li>
+                <li><a href="#" id="settings-link">Settings</a></li>
+            </ul>
+        </nav>
+
+        <main class="hero-content">
+            <section class="left">
+                <span class="st-eyebrow">Gotham City</span>
+                <h1 class="st-title">SEARCH<br>ENGINE</h1>
+                <p class="st-desc">
+                    He is vengeance. He is the night. Search the city archives with a TF-IDF engine
+                    forged in shadow, ranked by relevance, and built for Gotham's darkest questions.
+                </p>
+
+                <div class="search-container">
+                    <div class="search-box-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="search-input" class="search-input" placeholder="Enter the Dark..." autofocus>
+                        <button id="clear-btn" class="clear-btn" style="display: none;" aria-label="Clear search"><i class="fas fa-times"></i></button>
+                    </div>
+
+                    <div id="suggestions-container" class="suggestions-container" style="display: none;">
+                        <div id="suggestions-list" class="suggestions-list"></div>
+                    </div>
+
+                    <button id="search-btn" class="st-btn search-button">
+                        Enter the Dark
                     </button>
                 </div>
-            </div>
-            
-            <div id="status" class="status"></div>
+
+                <div id="status" class="status"></div>
+            </section>
+
+            <section class="right">
+                <span class="st-eyebrow right-eyebrow">Bruce Wayne</span>
+                <h2 class="st-title">The Man<br>Behind the Mask</h2>
+                <p class="st-text">
+                    Billionaire by day. Guardian by night. Every indexed document leaves a trace,
+                    every query becomes a signal, and the darkness obeys the ranking.
+                </p>
+            </section>
         </main>
-        
-        <div id="results-container" class="results-container" style="display: none;">
+
+        <section id="results-container" class="results-container" style="display: none;">
             <div class="results-header">
                 <div id="results-count" class="results-count"></div>
-                <button id="back-to-search" class="back-to-search">← Back to Search</button>
+                <button id="back-to-search" class="back-to-search">Back to Search</button>
             </div>
             <div id="results-list" class="results-list"></div>
-        </div>
-        
-        <footer>
-            <div class="footer-links">
-                <a href="#" id="privacy-link"><i class="fas fa-shield-alt"></i> Privacy</a>
-                <a href="#" id="terms-link"><i class="fas fa-file-contract"></i> Terms</a>
-                <a href="#" id="settings-link"><i class="fas fa-cog"></i> Settings</a>
-            </div>
-            <div class="footer-credits">GOTHAM CITY • THE BATMAN</div>
-        </footer>
+        </section>
     </div>
     
     <!-- About Modal -->

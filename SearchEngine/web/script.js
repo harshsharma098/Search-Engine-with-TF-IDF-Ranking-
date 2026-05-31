@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearBtn = document.getElementById('clear-btn');
 
     applySavedTheme();
+    initBatmanHeroCanvas();
     
     // Check server status
     checkStatus();
@@ -786,5 +787,154 @@ function updateThemeSelection() {
         button.classList.toggle('active', isSelected);
         button.setAttribute('aria-checked', isSelected ? 'true' : 'false');
     });
+}
+
+function initBatmanHeroCanvas() {
+    const hero = document.getElementById('hero');
+    const canvas = document.getElementById('hero-canvas');
+
+    if (!hero || !canvas) {
+        return;
+    }
+
+    const ctx = canvas.getContext('2d');
+    const mouse = { x: -9999, y: -9999 };
+    const smooth = { x: -9999, y: -9999 };
+    const trail = [];
+    const TRAIL_LENGTH = 60;
+    const HEAD_RADIUS = 180;
+
+    const bottom = new Image();
+    const top = new Image();
+    bottom.src = '/images/twoo.jpg';
+    top.src = '/images/one.jpg';
+
+    let hasBatmanPhotos = false;
+    let loaded = 0;
+    let rafId = null;
+
+    const resize = () => {
+        canvas.width = hero.offsetWidth;
+        canvas.height = hero.offsetHeight;
+    };
+
+    const drawFallbackBackground = (width, height) => {
+        const base = ctx.createLinearGradient(0, 0, width, height);
+        base.addColorStop(0, '#070707');
+        base.addColorStop(0.45, '#000000');
+        base.addColorStop(1, '#1a0005');
+        ctx.fillStyle = base;
+        ctx.fillRect(0, 0, width, height);
+
+        const signal = ctx.createRadialGradient(width * 0.52, height * 0.45, 0, width * 0.52, height * 0.45, Math.max(width, height) * 0.62);
+        signal.addColorStop(0, 'rgba(201, 164, 74, 0.18)');
+        signal.addColorStop(0.28, 'rgba(192, 0, 26, 0.16)');
+        signal.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = signal;
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.save();
+        ctx.globalAlpha = 0.16;
+        ctx.fillStyle = '#000';
+        ctx.font = `${Math.max(82, width * 0.16)}px "Bebas Neue", Impact, sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.letterSpacing = '0.06em';
+        ctx.fillText('THE DARK KNIGHT', width / 2, height / 2);
+        ctx.restore();
+    };
+
+    const draw = () => {
+        const { width, height } = canvas;
+        const theme = document.body.dataset.theme || 'red';
+        const glowColor = theme === 'gold' ? '201, 164, 74' : theme === 'blue' ? '47, 128, 237' : theme === 'purple' ? '155, 81, 224' : '232, 180, 30';
+
+        smooth.x += (mouse.x - smooth.x) * 0.13;
+        smooth.y += (mouse.y - smooth.y) * 0.13;
+
+        trail.unshift({ x: smooth.x, y: smooth.y });
+        if (trail.length > TRAIL_LENGTH) {
+            trail.length = TRAIL_LENGTH;
+        }
+
+        ctx.clearRect(0, 0, width, height);
+
+        if (hasBatmanPhotos) {
+            ctx.drawImage(bottom, 0, 0, width, height);
+
+            const offscreen = document.createElement('canvas');
+            offscreen.width = width;
+            offscreen.height = height;
+            const off = offscreen.getContext('2d');
+
+            for (let i = 0; i < trail.length; i += 1) {
+                const t = 1 - i / trail.length;
+                const r = HEAD_RADIUS * (0.25 + 0.75 * t);
+                const alpha = Math.pow(t, 1.5);
+                off.beginPath();
+                off.arc(trail[i].x, trail[i].y, r, 0, Math.PI * 2);
+                off.fillStyle = `rgba(0,0,0,${alpha})`;
+                off.fill();
+            }
+
+            off.globalCompositeOperation = 'source-in';
+            off.drawImage(top, 0, 0, width, height);
+            ctx.drawImage(offscreen, 0, 0);
+        } else {
+            drawFallbackBackground(width, height);
+        }
+
+        if (trail.length > 0) {
+            const head = trail[0];
+            const glow = ctx.createRadialGradient(
+                head.x, head.y, 0,
+                head.x, head.y, HEAD_RADIUS * 1.4
+            );
+            glow.addColorStop(0, `rgba(${glowColor}, 0.22)`);
+            glow.addColorStop(0.5, `rgba(${glowColor}, 0.10)`);
+            glow.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.beginPath();
+            ctx.arc(head.x, head.y, HEAD_RADIUS * 1.4, 0, Math.PI * 2);
+            ctx.fillStyle = glow;
+            ctx.fill();
+        }
+
+        rafId = requestAnimationFrame(draw);
+    };
+
+    const onMove = (event) => {
+        const rect = hero.getBoundingClientRect();
+        mouse.x = event.clientX - rect.left;
+        mouse.y = event.clientY - rect.top;
+    };
+
+    const start = () => {
+        if (rafId === null) {
+            draw();
+        }
+    };
+
+    const onImageLoad = () => {
+        loaded += 1;
+        if (loaded === 2) {
+            hasBatmanPhotos = true;
+            start();
+        }
+    };
+
+    const onImageError = () => {
+        hasBatmanPhotos = false;
+        start();
+    };
+
+    bottom.onload = onImageLoad;
+    top.onload = onImageLoad;
+    bottom.onerror = onImageError;
+    top.onerror = onImageError;
+
+    resize();
+    window.addEventListener('resize', resize);
+    hero.addEventListener('mousemove', onMove);
+    start();
 }
 
